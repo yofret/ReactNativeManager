@@ -3,6 +3,8 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
+	import { connect } from 'redux';
+	import { emailChanged } from '../actions'
 	import { Card, CardSection, Input, Button } from './common';
 
 //-------------------------------
@@ -26,7 +28,7 @@
 
 		//Methods
 		onEmailChange(text) {
-			
+			this.props.emailChanged(text);
 		}		
 
 		// Render methods
@@ -60,7 +62,12 @@
 	}
 
 //-------------------------------
+// MapState to props
+//-------------------------------
+
+//-------------------------------
 // Export Component
 //-------------------------------
 
-	export default LoginForm;
+	export default connect(null, { emailChanged })(LoginForm);
+
