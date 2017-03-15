@@ -22,7 +22,12 @@
 
 		componentWillUpdate(nextProps, nextState) {}
 
-		componentDidUpdate(prevProps, prevState) {}		
+		componentDidUpdate(prevProps, prevState) {}
+
+		//Methods
+		onEmailChange(text) {
+			
+		}		
 
 		// Render methods
 		render() {
@@ -32,6 +37,7 @@
 						<Input
 							labler="Email"
 							placeholder="email@gmail.com"
+							onChageText={this.onEmailChange.bind(this)}
 						/>
 					</CardSection>
 
