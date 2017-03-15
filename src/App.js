@@ -8,6 +8,7 @@
 	import { createStore } from 'redux';
 	import firebase from 'firebase';
 	import reducers from './reducers';
+	import LoginFrom from './components/LoginForm';
 
 
 //-------------------------------
@@ -31,9 +32,7 @@
 		render() {
 			return (
 				<Provider store={createStore(reducers)}>
-					<View>
-						<Text>Hello!!</Text>
-					</View>
+					<LoginFrom />
 				</Provider>
 			);
 		}
