@@ -3,7 +3,7 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
-	import { connect } from 'redux';
+	import { connect } from 'react-redux';
 	import { emailChanged } from '../actions'
 	import { Card, CardSection, Input, Button } from './common';
 
@@ -37,16 +37,17 @@
 				<Card>
 					<CardSection>
 						<Input
-							labler="Email"
+							label="Email"
 							placeholder="email@gmail.com"
-							onChageText={this.onEmailChange.bind(this)}
+							onChangeText={this.onEmailChange.bind(this)}
+							value={this.props.email}
 						/>
 					</CardSection>
 
 					<CardSection>
 						<Input
 							secureTextEntry
-							labler="Password"
+							label="Password"
 							placeholder="password"
 						/>
 					</CardSection>
@@ -65,9 +66,15 @@
 // MapState to props
 //-------------------------------
 
+	const mapStateToProps = state => {
+		return {
+			email: state.auth.email
+		}
+	};
+
 //-------------------------------
 // Export Component
 //-------------------------------
 
-	export default connect(null, { emailChanged })(LoginForm);
+	export default connect(mapStateToProps, { emailChanged })(LoginForm);
 
