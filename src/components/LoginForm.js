@@ -3,6 +3,7 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
+	import { Text } from 'react-native'
 	import { connect } from 'react-redux';
 	import { 
 		emailChanged, 
@@ -66,6 +67,10 @@
 						/>
 					</CardSection>
 
+					<Text style={styles.errorTextStyle}>
+						{this.props.error}
+					</Text>
+
 					<CardSection>
 						<Button onPress={this.onButtonPress.bind(this)}>
 							Login
@@ -76,16 +81,22 @@
 		}					
 	}
 
+const styles = {
+	errorTextStyle: {
+		fontSize: 20,
+		alignSelf: 'center',
+		color: 'red'
+	}
+}
+
 //-------------------------------
 // MapState to props
 //-------------------------------
 
-	const mapStateToProps = state => {
-		const { email, password} = state.auth
-		return {
-			email: email,
-			password: password
-		}
+	const mapStateToProps = ({ auth }) => {
+		const { email, password, error} = auth;
+
+		return { email, password, error };
 	};
 
 //-------------------------------
