@@ -90,13 +90,13 @@
 		}					
 	}
 
-const styles = {
-	errorTextStyle: {
-		fontSize: 20,
-		alignSelf: 'center',
-		color: 'red'
+	const styles = {
+		errorTextStyle: {
+			fontSize: 20,
+			alignSelf: 'center',
+			color: 'red'
+		}
 	}
-}
 
 //-------------------------------
 // MapState to props
