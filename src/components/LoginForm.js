@@ -10,7 +10,7 @@
 		passwordChanged, 
 		loginUser 
 	} from '../actions'
-	import { Card, CardSection, Input, Button } from './common';
+	import { Card, CardSection, Input, Button, Spinner } from './common';
 
 //-------------------------------
 // LoginForm Component
@@ -46,6 +46,18 @@
 		}		
 
 		// Render methods
+		renderButton() {
+			if(this.props.loading) {
+				return <Spinner size="large" />
+			}
+
+			return (
+				<Button onPress={this.onButtonPress.bind(this)}>
+					Login
+				</Button>
+			);
+		}
+
 		render() {
 			return (
 				<Card>
@@ -64,17 +76,14 @@
 							label="Password"
 							placeholder="password"
 							onChangeText={this.onPasswordChange.bind(this)}
+							value={this.props.password}
 						/>
 					</CardSection>
 
-					<Text style={styles.errorTextStyle}>
-						{this.props.error}
-					</Text>
+					<Text style={styles.errorTextStyle}> { this.props.error }</Text>
 
 					<CardSection>
-						<Button onPress={this.onButtonPress.bind(this)}>
-							Login
-						</Button>
+						{ this.renderButton() }
 					</CardSection>
 				</Card>
 			);
@@ -94,9 +103,9 @@ const styles = {
 //-------------------------------
 
 	const mapStateToProps = ({ auth }) => {
-		const { email, password, error} = auth;
+		const { email, password, error, loading} = auth;
 
-		return { email, password, error };
+		return { email, password, error, loading };
 	};
 
 //-------------------------------
