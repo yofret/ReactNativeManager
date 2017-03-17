@@ -3,12 +3,12 @@
 //-------------------------------
 
 	import React, { Component } from 'react';
-	import { Text } from 'react-native'
+	import { View, Text } from 'react-native';
 	import { connect } from 'react-redux';
 	import { 
 		emailChanged, 
 		passwordChanged, 
-		loginUser 
+		loginUser
 	} from '../actions'
 	import { Card, CardSection, Input, Button, Spinner } from './common';
 
@@ -103,7 +103,7 @@
 //-------------------------------
 
 	const mapStateToProps = ({ auth }) => {
-		const { email, password, error, loading} = auth;
+		const { email, password, error, loading } = auth;
 
 		return { email, password, error, loading };
 	};
