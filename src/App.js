@@ -8,7 +8,7 @@
 	import ReduxThunk from 'redux-thunk';
 	import firebase from 'firebase';
 	import reducers from './reducers';
-	import LoginFrom from './components/LoginForm';
+	import Router from './Router';
 
 
 //-------------------------------
@@ -34,7 +34,7 @@
 
 			return (
 				<Provider store={store}>
-					<LoginFrom />
+					<Router />
 				</Provider>
 			);
 		}
