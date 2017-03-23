@@ -4,7 +4,6 @@
 
 	import React, { Component } from 'react';
 	import { View } from 'react-native';
-	import { Actions } from 'react-native-router-flux';
 	import firebase from 'firebase';
 	import { Spinner } from './common';
 
@@ -13,17 +12,28 @@
 //-------------------------------
 
 	class Loader extends Component {
-		//State
-		state = {
-			isLogged: null
+		constructor(props) {
+			super(props);
+
+			this.state = {};
+			this.props.navigator.toggleNavBar({
+				to: 'hidden', 
+				animated: true 
+			});
 		}
 
 		componentWillMount() {
 			firebase.auth().onAuthStateChanged((user) => {
 				if(user) {
-					Actions.main();
+					this.props.navigator.push({
+						title: "Employees",
+						screen: "manager.EmployeeList"
+					});
 				} else {
-					Actions.login();
+					this.props.navigator.push({
+						title: "Login",
+						screen: "manager.LoginForm"
+					});
 				}
 			});
 		}	

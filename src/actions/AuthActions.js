@@ -43,5 +43,5 @@ const loginUserSuccess = (dispatch, user) => {
 	dispatch({ type: LOGIN_USER_SUCCESS, payload: user })
 
 	// Navigate the user on user loginSucess
-	Actions.main();
+	// Actions.main();
 }

@@ -2,46 +2,44 @@
 // App Dependencies 
 //-------------------------------
 
-	import React, { Component } from 'react';
+	import { Navigation } from 'react-native-navigation';
 	import { Provider } from 'react-redux';
 	import { createStore, applyMiddleware } from 'redux';
 	import ReduxThunk from 'redux-thunk';
 	import firebase from 'firebase';
 	import reducers from './reducers';
-	import Router from './Router';
+	import { registerScreens } from './Screens';
 
+	const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
 
-//-------------------------------
-// App Class Component 
-//-------------------------------
-	
-	class App extends Component {
+	registerScreens(store, Provider);
 
-		componentWillMount() {
-			const config = {
-				apiKey: 'AIzaSyChPko5hStWUj-WolROcG50jsjfaHu5FKY',
-				authDomain: 'manager-cc5da.firebaseapp.com',
-				databaseURL: 'https://manager-cc5da.firebaseio.com',
-				storageBucket: 'manager-cc5da.appspot.com',
-				messagingSenderId: '739200810786'
-			};
+	const navigatorStyle = {
+		statusBarColor: 'black',
+		statusBarTextColorScheme: 'light',
+		navigationBarColor: 'black',
+		navBarBackgroundColor: '#0a0a0a',
+		navBarTextColor: 'white',
+		navBarButtonColor: 'white',
+		tabBarButtonColor: 'red',
+		tabBarSelectedButtonColor: 'red',
+		tabBarBackgroundColor: 'white'
+	};
 
-			firebase.initializeApp(config);
-		}			
+	const config = {
+		apiKey: 'AIzaSyChPko5hStWUj-WolROcG50jsjfaHu5FKY',
+		authDomain: 'manager-cc5da.firebaseapp.com',
+		databaseURL: 'https://manager-cc5da.firebaseio.com',
+		storageBucket: 'manager-cc5da.appspot.com',
+		messagingSenderId: '739200810786'
+	};
 
-		render() {
-			const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
+	firebase.initializeApp(config);
 
-			return (
-				<Provider store={store}>
-					<Router />
-				</Provider>
-			);
+	Navigation.startSingleScreenApp({
+		screen: {
+			screen: 'manager.Loader',
+			title: 'Loader',
+			navigatorStyle
 		}
-	}
-
-//-------------------------------
-// Export Class Component 
-//-------------------------------
-
-	export default App
+	});
